@@ -20,6 +20,60 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dayj
 
 /***/ }),
 
+/***/ "./src/modules/form/hours-click.js":
+/*!*****************************************!*\
+  !*** ./src/modules/form/hours-click.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   hoursClick: () => (/* binding */ hoursClick)\n/* harmony export */ });\nfunction hoursClick() {\n  var hours = document.querySelectorAll('.hour-available');\n  hours.forEach(function (available) {\n    available.addEventListener(\"click\", function (selected) {\n      // Remove a classe hour-selected de todas li não selecionadas.\n      hours.forEach(function (hour) {\n        hour.classList.remove(\"hour-selected\");\n      });\n\n      // Adiciona a classe na li selecionada.\n      selected.target.classList.add(\"hour-selected\");\n    });\n  });\n}\n\n//# sourceURL=webpack://HarDay/./src/modules/form/hours-click.js?");
+
+/***/ }),
+
+/***/ "./src/modules/form/hours-load.js":
+/*!****************************************!*\
+  !*** ./src/modules/form/hours-load.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   hoursLoad: () => (/* binding */ hoursLoad)\n/* harmony export */ });\n/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dayjs */ \"./node_modules/dayjs/dayjs.min.js\");\n/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _utils_opening_hours__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/opening-hours */ \"./src/utils/opening-hours.js\");\n/* harmony import */ var _hours_click__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hours-click */ \"./src/modules/form/hours-click.js\");\nfunction _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\nfunction _unsupportedIterableToArray(r, a) { if (r) { if (\"string\" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return \"Object\" === t && r.constructor && (t = r.constructor.name), \"Map\" === t || \"Set\" === t ? Array.from(r) : \"Arguments\" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }\nfunction _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }\nfunction _iterableToArrayLimit(r, l) { var t = null == r ? null : \"undefined\" != typeof Symbol && r[Symbol.iterator] || r[\"@@iterator\"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t[\"return\"] && (u = t[\"return\"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }\nfunction _arrayWithHoles(r) { if (Array.isArray(r)) return r; }\n\n\n\nvar hours = document.getElementById(\"hours\");\nfunction hoursLoad(_ref) {\n  var date = _ref.date;\n  var opening = _utils_opening_hours__WEBPACK_IMPORTED_MODULE_1__.openingHours.map(function (hour) {\n    // Recupera somente a hora, sem minutos.\n    var _hour$split = hour.split(\":\"),\n      _hour$split2 = _slicedToArray(_hour$split, 1),\n      schedulesHour = _hour$split2[0];\n\n    // Adiciona a hora na data e verfica se está no passado.\n    var isHourPast = dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).add(schedulesHour, \"hour\").isAfter(dayjs__WEBPACK_IMPORTED_MODULE_0___default()());\n    return {\n      hour: hour,\n      available: isHourPast\n    };\n  });\n\n  // Renderiza os horários.\n  opening.forEach(function (_ref2) {\n    var hour = _ref2.hour,\n      available = _ref2.available;\n    var li = document.createElement(\"li\");\n    li.classList.add(\"hour\");\n    li.classList.add(available ? \"hour-available\" : \"hour-unavailable\");\n    li.textContent = hour;\n\n    // Separa os horários por períodos.\n    if (hour === \"9:00\") {\n      hourHeaderAdd(\"Manhã\");\n    } else if (hour === \"13:00\") {\n      hourHeaderAdd(\"Tarde\");\n    } else if (hour === \"18:00\") {\n      hourHeaderAdd(\"Noite\");\n    }\n    hours.append(li);\n  });\n\n  // Adiciona o evento de click, nos horários disponíveis.\n  (0,_hours_click__WEBPACK_IMPORTED_MODULE_2__.hoursClick)();\n}\n\n// Função para add o nome do período.\nfunction hourHeaderAdd(title) {\n  var header = document.createElement(\"li\");\n  header.classList.add(\"hour-period\");\n  header.textContent = title;\n  hours.append(header);\n}\n\n//# sourceURL=webpack://HarDay/./src/modules/form/hours-load.js?");
+
+/***/ }),
+
+/***/ "./src/modules/form/submit.js":
+/*!************************************!*\
+  !*** ./src/modules/form/submit.js ***!
+  \************************************/
+/***/ (() => {
+
+eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nSyntaxError: C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\src\\\\modules\\\\form\\\\submit.js: Missing semicolon. (4:5)\\n\\n\\u001b[0m \\u001b[90m 2 |\\u001b[39m\\n \\u001b[90m 3 |\\u001b[39m \\u001b[36mconst\\u001b[39m form \\u001b[33m=\\u001b[39m document\\u001b[33m.\\u001b[39mquerySelector(\\u001b[32m\\\"form\\\"\\u001b[39m)\\n\\u001b[31m\\u001b[1m>\\u001b[22m\\u001b[39m\\u001b[90m 4 |\\u001b[39m conts clientName \\u001b[33m=\\u001b[39m document\\u001b[33m.\\u001b[39mgetElementById(\\u001b[32m\\\"client\\\"\\u001b[39m)\\n \\u001b[90m   |\\u001b[39m      \\u001b[31m\\u001b[1m^\\u001b[22m\\u001b[39m\\n \\u001b[90m 5 |\\u001b[39m \\u001b[36mconst\\u001b[39m selectedDate \\u001b[33m=\\u001b[39m document\\u001b[33m.\\u001b[39mgetElementById(\\u001b[32m\\\"date\\\"\\u001b[39m)\\n \\u001b[90m 6 |\\u001b[39m\\n \\u001b[90m 7 |\\u001b[39m \\u001b[90m// Data atual para formatar input.\\u001b[39m\\u001b[0m\\n    at constructor (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:363:19)\\n    at Parser.raise (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:6609:19)\\n    at Parser.semicolon (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:6906:10)\\n    at Parser.parseExpressionStatement (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:13204:10)\\n    at Parser.parseStatementContent (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:12818:19)\\n    at Parser.parseStatementLike (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:12685:17)\\n    at Parser.parseModuleItem (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:12662:17)\\n    at Parser.parseBlockOrModuleBlockBody (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:13235:36)\\n    at Parser.parseBlockBody (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:13228:10)\\n    at Parser.parseProgram (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:12541:10)\\n    at Parser.parseTopLevel (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:12531:25)\\n    at Parser.parse (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:14410:10)\\n    at parse (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\parser\\\\lib\\\\index.js:14444:38)\\n    at parser (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\parser\\\\index.js:41:34)\\n    at parser.next (<anonymous>)\\n    at normalizeFile (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\transformation\\\\normalize-file.js:64:37)\\n    at normalizeFile.next (<anonymous>)\\n    at run (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\transformation\\\\index.js:21:50)\\n    at run.next (<anonymous>)\\n    at transform (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\transform.js:22:33)\\n    at transform.next (<anonymous>)\\n    at step (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\gensync\\\\index.js:261:32)\\n    at C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\gensync\\\\index.js:273:13\\n    at async.call.result.err.err (C:\\\\Users\\\\mtole\\\\Desktop\\\\Meus Projetos\\\\HairDay\\\\node_modules\\\\gensync\\\\index.js:223:11)\");\n\n//# sourceURL=webpack://HarDay/./src/modules/form/submit.js?");
+
+/***/ }),
+
+/***/ "./src/modules/page-load.js":
+/*!**********************************!*\
+  !*** ./src/modules/page-load.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _schedules_load_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./schedules/load.js */ \"./src/modules/schedules/load.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n  (0,_schedules_load_js__WEBPACK_IMPORTED_MODULE_0__.schedulesDay)();\n});\n\n//# sourceURL=webpack://HarDay/./src/modules/page-load.js?");
+
+/***/ }),
+
+/***/ "./src/modules/schedules/load.js":
+/*!***************************************!*\
+  !*** ./src/modules/schedules/load.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   schedulesDay: () => (/* binding */ schedulesDay)\n/* harmony export */ });\n/* harmony import */ var _form_hours_load__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../form/hours-load */ \"./src/modules/form/hours-load.js\");\n\n\n// Seleciona o input de data.\nvar selectDate = document.getElementById(\"date\");\nfunction schedulesDay() {\n  // Obtém a data do input.\n  var date = selectDate.value;\n\n  // Renderiza as horas Disponíveis.\n  (0,_form_hours_load__WEBPACK_IMPORTED_MODULE_0__.hoursLoad)({\n    date: date\n  });\n}\n\n//# sourceURL=webpack://HarDay/./src/modules/schedules/load.js?");
+
+/***/ }),
+
 /***/ "./src/script.js":
 /*!***********************!*\
   !*** ./src/script.js ***!
@@ -27,7 +81,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dayj
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _libs_dayjs_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./libs/dayjs.js */ \"./src/libs/dayjs.js\");\n/* harmony import */ var _styles_form_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/form.css */ \"./src/styles/form.css\");\n/* harmony import */ var _styles_global_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/global.css */ \"./src/styles/global.css\");\n/* harmony import */ var _styles_schedule_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/schedule.css */ \"./src/styles/schedule.css\");\n/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! dayjs */ \"./node_modules/dayjs/dayjs.min.js\");\n/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_4__);\n\n\n// Configuração do Dayjs\n\n\n// CSS\n\n\n\n\nconsole.log(dayjs__WEBPACK_IMPORTED_MODULE_4___default()().format(\"HH:mm\"));\n\n//# sourceURL=webpack://HarDay/./src/script.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _libs_dayjs_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./libs/dayjs.js */ \"./src/libs/dayjs.js\");\n/* harmony import */ var _styles_form_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/form.css */ \"./src/styles/form.css\");\n/* harmony import */ var _styles_global_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/global.css */ \"./src/styles/global.css\");\n/* harmony import */ var _styles_schedule_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/schedule.css */ \"./src/styles/schedule.css\");\n/* harmony import */ var _modules_form_submit_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/form/submit.js */ \"./src/modules/form/submit.js\");\n/* harmony import */ var _modules_form_submit_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_modules_form_submit_js__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _modules_page_load_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/page-load.js */ \"./src/modules/page-load.js\");\n\n\n// Configuração do Dayjs\n\n\n// CSS\n\n\n\n\n// JS\n\n\n\n//# sourceURL=webpack://HarDay/./src/script.js?");
+
+/***/ }),
+
+/***/ "./src/utils/opening-hours.js":
+/*!************************************!*\
+  !*** ./src/utils/opening-hours.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   openingHours: () => (/* binding */ openingHours)\n/* harmony export */ });\nvar openingHours = [\"8:00\", \"9:00\", \"10:00\", \"11:00\", \"12:00\", \"13:00\", \"14:00\", \"15:00\", \"16:00\", \"17:00\", \"18:00\", \"19:00\", \"20:00\", \"21:00\", \"22:00\"];\n\n//# sourceURL=webpack://HarDay/./src/utils/opening-hours.js?");
 
 /***/ }),
 
