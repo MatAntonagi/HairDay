@@ -30,7 +30,7 @@ export function hoursLoad({date, dailySchedules }){
     })
 
     // Renderiza os horários.
-    opening.forEach(({hour, available}) => {
+    opening.forEach(({ hour, available }) => {
         const li = document.createElement("li")
         li.classList.add("hour")
         li.classList.add(available ? "hour-available" : "hour-unavailable")
@@ -38,7 +38,7 @@ export function hoursLoad({date, dailySchedules }){
         li.textContent = hour
 
         // Separa os horários por períodos.
-        if(hour === "9:00"){
+        if(hour === "08:00"){
             hourHeaderAdd("Manhã")
         } else if (hour === "13:00"){
             hourHeaderAdd("Tarde")
